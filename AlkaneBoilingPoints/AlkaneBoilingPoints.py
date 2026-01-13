@@ -1,32 +1,42 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Data
-num_carbons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-boiling_points = [-161.5, -88.6, -42.1, -0.5, 36.1, 68.7, 98.4, 125.6, 150.8, 174.1]
+num_carbons = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+boiling_points = np.array([-161.5, -88.6, -42.1, -0.5, 36.1, 68.7, 98.4, 125.6, 150.8, 174.1])
 
-# Create figure with better aspect ratio
+# Linear regression (trendline)
+coeffs = np.polyfit(num_carbons, boiling_points, 1)
+trendline = np.poly1d(coeffs)
+
+# Smooth x-values for trendline
+x_smooth = np.linspace(1, 10, 200)
+
+# Figure setup
 plt.figure(figsize=(9, 6))
 
-# Scatter plot with custom marker and color styling
+# Scatter plot
 plt.scatter(
     num_carbons,
     boiling_points,
-    s=140,                 # marker sizes
-    marker='h',            # hexagon marker (feels more "chemical")
-    c=boiling_points,      # color mapped to boiling point
-    cmap='plasma',         # presentation-friendly colormap
+    s=140,
+    marker='h',              # hexagon marker (chemistry aesthetic)
+    c=boiling_points,
+    cmap='plasma',
     edgecolors='black',
     linewidth=0.8,
-    alpha=0.9
+    alpha=0.9,
+    label="Measured boiling points"
 )
 
-# Add a smooth connecting line for trend emphasis
+# Trendline
 plt.plot(
-    num_carbons,
-    boiling_points,
-    linestyle='--',
-    linewidth=1.5,
-    alpha=0.6
+    x_smooth,
+    trendline(x_smooth),
+    linewidth=1.8,   # thinner line
+    color='black',
+    alpha=0.8,
+    label="Linear trend"
 )
 
 # Titles and labels
@@ -38,14 +48,17 @@ plt.title(
 plt.xlabel("Number of Carbons", fontsize=13)
 plt.ylabel("Boiling Point (°C)", fontsize=13)
 
-# Improve grid appearance
+# Grid and style
 plt.grid(True, linestyle='--', alpha=0.4)
 
-# Add colorbar for clarity
+# Colorbar
 cbar = plt.colorbar()
 cbar.set_label("Boiling Point (°C)", fontsize=11)
 
-# Clean up spines for a modern look
+# Legend
+plt.legend(frameon=False, fontsize=11)
+
+# Clean spines
 ax = plt.gca()
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
