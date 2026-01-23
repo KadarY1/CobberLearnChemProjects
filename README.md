@@ -9,3 +9,7 @@ through Concordia College.
 Alongside my public coding projects, I’m keeping a private
 ethics portfolio where I reflect on what I’m learning and how
 it’s shaping the kind of scientist I want to become.
+
+Molecule Explorer is a program that fetches a molecule and extracts data from a package called RDKit. 
+
+PubChemFetcher is a program that gives me the properties of molecules for research in a cool output style.
