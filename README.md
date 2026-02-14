@@ -13,3 +13,8 @@ it’s shaping the kind of scientist I want to become.
 Molecule Explorer is a program that fetches a molecule and extracts data from a package called RDKit. 
 
 PubChemFetcher is a program that gives me the properties of molecules for research in a cool output style.
+
+In the DecisionTreeClassifier project, I apply decision tree logic to a new chemical prediction task: determining whether a molecule is water-soluble. Unlike previous work predicting numerical values (such as boiling points), this task is a **classification problem**, where the model predicts one of two categories—soluble or not soluble.
+
+To solve this problem, I used Python’s `DecisionTreeClassifier` from the `scikit-learn` library. The model learns decision rules based on molecular properties commonly associated with solubility.
+
